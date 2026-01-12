@@ -15,8 +15,15 @@ def main():
     validar_processo(processo)  
 
 def escolher_programa():
-    processo = input('Digite o nome do processo: ')
-    return processo
+    logger = logging.getLogger('monitoramento_processos')
+
+    try:
+        processo = input('Digite o nome do processo: ')
+        return processo
+    
+    except KeyboardInterrupt:
+        logger.warning('\nO usuário interrompeu o programa (CRTL+C).')
+        sys.exit(0)
 
 def listar_processo(processo):
     ram = 0
